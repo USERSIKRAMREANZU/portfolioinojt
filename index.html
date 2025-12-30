@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Laurenz Advincula - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c2c2c;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: bounceIn 1s ease-out;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .header-text h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-text h2 {
+            font-size: 1.8em;
+            font-weight: 400;
+            opacity: 0.95;
+            animation: slideInRight 1s ease-out 0.3s both;
+        }
+
+        .header-text p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            opacity: 0.85;
+            animation: slideInRight 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin: 60px 0 40px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+            color: #667eea;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            animation: expandWidth 1s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+
+        /* About Section */
+        .about-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 80px 0;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .about-content > div {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .about-content > div:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .about-content h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .about-content ul {
+            list-style: none;
+        }
+
+        .about-content li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .about-content li:hover {
+            transform: translateX(10px);
+        }
+
+        .about-content li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.2em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+
+        /* Internship Section */
+        .internship-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .internship-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            margin-top: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideInUp 1s ease-out;
+            border-left: 5px solid #667eea;
+        }
+
+        .internship-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .internship-card h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .internship-card .date {
+            color: #764ba2;
+            font-style: italic;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .internship-card p {
+            margin-bottom: 15px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .skills-list {
+            margin-top: 30px;
+        }
+
+        .skills-list h4 {
+            margin-bottom: 15px;
+            color: #667eea;
+            font-size: 1.3em;
+        }
+
+        .skills-list ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skills-list li {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            animation: popIn 0.5s ease-out backwards;
+        }
+
+        .skills-list li:nth-child(1) { animation-delay: 0.1s; }
+        .skills-list li:nth-child(2) { animation-delay: 0.2s; }
+        .skills-list li:nth-child(3) { animation-delay: 0.3s; }
+        .skills-list li:nth-child(4) { animation-delay: 0.4s; }
+        .skills-list li:nth-child(5) { animation-delay: 0.5s; }
+        .skills-list li:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .skills-list li:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Sample Works Section */
+        .works-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 80px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .work-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+
+        .work-item:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.4);
+        }
+
+        .work-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .work-item:hover::before {
+            opacity: 1;
+        }
+
+        .work-item img, .work-item video {
+            width: 100%;
+            height: auto;
+            min-height: 350px;
+            object-fit: contain;
+            background: #f5f5f5;
+            transition: transform 0.4s ease;
+        }
+
+        .work-item:hover img, .work-item:hover video {
+            transform: scale(1.1);
+        }
+
+        .work-item-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .work-item h3 {
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            color: #667eea;
+            transition: color 0.3s ease;
+        }
+
+        .work-item:hover h3 {
+            color: #764ba2;
+        }
+
+        .work-item p {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        /* Other Works Section */
+        .other-works {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 60px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .other-works ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .other-works li {
+            padding: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.15em;
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.6s ease-out backwards;
+        }
+
+        .other-works li:nth-child(1) { animation-delay: 0.1s; }
+        .other-works li:nth-child(2) { animation-delay: 0.2s; }
+        .other-works li:nth-child(3) { animation-delay: 0.3s; }
+        .other-works li:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .other-works li:hover {
+            transform: translateX(15px);
+            color: #667eea;
+        }
+
+        .other-works li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.5em;
+            animation: pulse 2s infinite;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        .contact-content {
+            display: flex;
+            align-items: center;
+            gap: 70px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-image {
+            flex: 1;
+            min-width: 320px;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .contact-image img:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 320px;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-info h2 {
+            font-size: 3em;
+            margin-bottom: 35px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .contact-details p {
+            margin: 18px 0;
+            font-size: 1.15em;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-details p:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-details a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            padding-bottom: 2px;
+        }
+
+        .contact-details a:hover {
+            border-bottom-color: white;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 1em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll Animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                text-align: center;
+                justify-content: center;
+            }
+
+            .header-text h1 {
+                font-size: 2.5em;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2em;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="assets/profile photo.png" alt="Mark Laurenz Advincula" class="profile-image">
+                <div class="header-text">
+                    <h1>MY PORTFOLIO</h1>
+                    <h2>Mark Laurenz Advincula</h2>
+                    <p>BSIT 4-5</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">ABOUT ME</h2>
+            <div class="about-content">
+                <div class="animate-on-scroll">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Programming: Basic (HTML, CSS, PHP, C++, Java, C#)</li>
+                        <li>Graphic & Motion: Adobe Creative Suite (Photoshop, Illustrator, Premiere Pro, After Effects)</li>
+                        <li>3D Modeling: Blender</li>
+                        <li>Documentation: Microsoft Office Suite</li>
+                        <li>Video Editing: Basic (Filmora, Capcut)</li>
+                        <li>Video Editing: Intermediate (Adobe Premiere Pro)</li>
+                        <li>Others: Game Design, PC Hardware & Networking</li>
+                    </ul>
+                </div>
+                <div class="animate-on-scroll">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Adaptability</li>
+                        <li>Time Management</li>
+                        <li>Leadership</li>
+                        <li>Communication</li>
+                        <li>Creativity</li>
+                        <li>Project/Production Management (AGILE)</li>
+                    </ul>
+                    <h3 style="margin-top: 30px;">Certifications & Training</h3>
+                    <ul>
+                        <li>First Aid & Basic Life Support (PLV Red Cross Youth Council)</li>
+                        <li>Canva Graphic Design & Business Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship Section -->
+    <section class="internship-section">
+        <div class="container">
+            <h2 class="section-title">INTERNSHIP EXPERIENCE</h2>
+            <div class="internship-card animate-on-scroll">
+                <h3>PHILIPPINE SCHOOL FOR TECHNOLOGY DEVELOPMENT AND INNOVATION INC.</h3>
+                <p class="date">June 2025 - November 2025</p>
+                <p>The Philippine School for Technology Development & Innovation Inc., established in 2020 in Valenzuela City, was created to help expand the government's training capacity under TESDA. The institution focuses on addressing the skills and technical–vocational needs of the CAMANAVA area (Caloocan, Malabon, Navotas, Valenzuela), a district with over 2 million people, around 50,000 unemployed, and 75,000 underemployed. To help meet these challenges, the organization aims to contribute to improving technical–vocational training in the region.</p>
+                <p><strong>Address:</strong> Corner De Leon St., Purok Kabatuhan., Brgy Mapulang Lupa, Valenzuela City, Philippines</p>
+                <div class="skills-list">
+                    <h4>Role: Technical Support and Encoder</h4>
+                    <ul>
+                        <li>Microsoft Excel</li>
+                        <li>Microsoft Word</li>
+                        <li>Technical Troubleshooting</li>
+                        <li>Computer Hardware Basics</li>
+                        <li>Networking</li>
+                        <li>Basic Network Configuration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Works Section -->
+    <section class="works-section">
+        <div class="container">
+            <h2 class="section-title">SAMPLE WORKS</h2>
+            <div class="works-grid">
+                <div class="work-item">
+                    <img src="assets/PSTDI UNIFORM.png" alt="PSTDI Uniform Design">
+                    <div class="work-item-content">
+                        <h3>PSTDI Uniform Design</h3>
+                        <p>Professional uniform design for Philippine School for Technology Development</p>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <img src="assets/FORKLIFTUNIFORM.png" alt="Forklift Uniform">
+                    <div class="work-item-content">
+                        <h3>Forklift Uniform Design</h3>
+                        <p>Custom uniform design incorporating modern aesthetics with institutional identity for Forklift Scholars</p>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <img src="assets/EBET UNIFORM.png" alt="EBET Uniform">
+                    <div class="work-item-content">
+                        <h3>Uniform Design for EBET</h3>
+                        <p>Clean and modern uniform design with institutional branding</p>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <video src="assets/plvealagavideo.mp4" autoplay loop muted playsinline></video>
+                    <div class="work-item-content">
+                        <h3>PLV E-Alaga System</h3>
+                        <p>Digital system design for efficient Clinic Operation and Student Welfare</p>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <video src="assets/biringanvideo.mp4" autoplay loop muted playsinline></video>
+                    <div class="work-item-content">
+                        <h3>Biringan: The Lost Continent</h3>
+                        <p>Creative multimedia game development project with visual storytelling elements</p>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <img src="assets/ComputerLaboratory.jpg" alt="Computer Laboratory Setup">
+                    <div class="work-item-content">
+                        <h3>Computer Laboratory Setup</h3>
+                        <p>Complete computer laboratory installation and configuration for educational institution</p>
+                    </div>
+                </div>
+                <div class="work-item">
+                    <img src="assets/NetworkInstall.jpg" alt="Network Setup">
+                    <div class="work-item-content">
+                        <h3>Network Setup and Configuration</h3>
+                        <p>Network infrastructure setup including cabling, router configuration, and connectivity optimization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Works -->
+    <section class="other-works">
+        <div class="container">
+            <h3 style="font-size: 2em; margin-bottom: 10px; color: #667eea;">Other Works</h3>
+            <ul>
+                <li>Template Layout for Joint Delivery Voucher Program (JDVP)</li>
+                <li>Video Presentation for JDVP</li>
+                <li>Various Poster Making Projects</li>
+                <li>EBET Documents</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-image">
+                    <img src="assets/contactme.jpg" alt="Contact">
+                </div>
+                <div class="contact-info">
+                    <h2>GET IN TOUCH</h2>
+                    <div class="contact-details">
+                        <p><strong>Let's Connect!</strong></p>
+                        <p>Email: <a href="mailto:marklaurensy@gmail.com">marklaurensy@gmail.com</a></p>
+                        <p><strong>Contact Number:</strong></p>
+                        <p>+639672716714</p>
+                        <p><strong>Social Media:</strong></p>
+                        <p>Mark Laurenz Advincula</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mark Laurenz Advincula. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
